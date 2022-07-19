@@ -6,5 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
   private readonly apiUrl: string = 'https://randomuser.me/api/';
-  constructor( private  http : HttpClient) {}
+  constructor(private http: HttpClient) {}
+
+  getUSers(size: number = 15) {
+    return this.http.get(`${this.apiUrl}/?results=${size}`);
+  }
+
+  getUSer(uuid: number = 1) {
+    return this.http.get(`${this.apiUrl}/?uuid=${uuid}`);
+  }
 }
