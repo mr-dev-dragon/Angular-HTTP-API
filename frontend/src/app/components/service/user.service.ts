@@ -4,6 +4,8 @@ import { User } from './../../interface/user';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(size: number = 15) {
-    return this.http.get(`${this.apiUrl}/?results=${size}`);
+    return this.http.get(`${this.apiUrl}/?results=${size}`).subscribe((response: Response) => {
+      this.pro_Res(response);
+    })
+
+
   }
 
   getUser(uuid: number = 1) {
