@@ -1,16 +1,30 @@
-import { Component } from '@angular/core';
+import { environment } from './../environments/environment.prod';
+
+import { Component, OnInit } from '@angular/core';
 import { observable, Subscriber } from 'rxjs';
 // import { HttpResponse } from '@angular/common/http';
-import { Observable, } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  title = 'Angular-HTTP-API';
-  constructor() {
+export class AppComponent implements OnInit {
+
+
+  constructor(private usersService: UsersService) {}
+  ngOnInit(): void {
+    this.onGetUsers();
+  }
+
+  onGetUsers(): void {
+    this.usersService.getusers().subscribe(
+      (response) => console.log(response),
+      (error: any) => console.log(error),
+      () => console.log('done')
+    );
+
 
     type HttpResponse = { code: Number, data: String };
     const abserv = new Observable<HttpResponse>(subscriber => {
@@ -40,7 +54,5 @@ export class AppComponent {
      },
    });
 
-
-    }}
-
-
+    }
+}
