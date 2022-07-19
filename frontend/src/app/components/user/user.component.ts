@@ -11,7 +11,7 @@ export class UserComponent implements OnInit {
   constructor(private serv :UserService) { }
 
   ngOnInit(): void {
-    this.serv.getUsers(10).subscribe((res: any) => {
+    this.serv.getUsers(1).subscribe((res: any) => {
       console.log(res);
       return this.dataa = res;
     })
