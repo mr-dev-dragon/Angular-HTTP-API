@@ -1,9 +1,46 @@
+
+  <nav class="navbar bg-dark">
+    <div class="container">
+      <a
+            style="color: #fff;"
+             class=" navbar-brand" href="#">
+        <img src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24"
+
+        class="d-inline-block   align-text-top text-">
+        Bootstrap
+      </a>
+    </div>
+  </nav>
+
 <div class="container mt-4 mb-4">
+
   <div class="row">
     <div class="col-xs-12">
       <h2>{{title}}</h2>
       <hr>
       <router-outlet></router-outlet>
     </div>
+  </div>
+</div>
+
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="true" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled">Disabled</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
