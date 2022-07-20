@@ -1,4 +1,5 @@
-import { Response } from './../../interface/response';
+import { User } from './../../interface/user';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../service/user.service';
@@ -10,7 +11,8 @@ import { UserService } from '../service/user.service';
 })
 export class UserDetailsComponent implements OnInit {
   data2: any;
-  response: Response;
+  user: User;
+
   mode:'edit' | 'locked' = 'locked';
     ButtonText: 'save' | 'edit' = 'edit';
 
@@ -21,6 +23,8 @@ export class UserDetailsComponent implements OnInit {
   { }
 
   ngOnInit(): void {
+    this.user = (<User>(this.activatedRoute.snapshot.data['resolvedResponse'].results[0]));
+
     // this.activatedRoute.paramMap.subscribe((params: ParamMap) =>
     // {  console.log(` Id : ${params.get('uuid')!}`);
     //   this.userService.getUser(params.get('uuid')!).subscribe((res:any )=>
@@ -35,6 +39,10 @@ export class UserDetailsComponent implements OnInit {
   changeMode(mode: 'edit' | 'locked'): void {
     this.mode = this.mode === 'locked' ? 'edit' : 'locked';
     this.ButtonText = this.ButtonText === 'edit' ? 'save' : 'edit';
+    if(mode === 'edit') {
+      // Logic to update the user on the back end
+      console.log('Updating using on the back end');
+    }
   }
 
 }
