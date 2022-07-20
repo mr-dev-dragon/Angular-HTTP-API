@@ -15,15 +15,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(size: number = 15) {
-    return this.http.get(`${this.apiUrl}/?results=${size}`).subscribe((response: Response) => {
-      this.pro_Res(response);
-    })
+    return this.http.get(`${this.apiUrl}/?results=${size}`)
+      .pipe(map((response:any) => this.pro_Res(response)));
 
 
   }
 
   getUser(uuid: number = 1) {
-    return this.http.get(`${this.apiUrl}/?uuid=${uuid}`);
+    return this.http.get(`${this.apiUrl}/?uuid=${uuid}`)
+          .pipe(map((response:any) => this.pro_Res(response)));
   }
   private pro_Res(response: Response): Response {
     return {
