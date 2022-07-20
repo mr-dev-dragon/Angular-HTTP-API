@@ -11,7 +11,9 @@ import { UserService } from '../service/user.service';
 export class UserDetailsComponent implements OnInit {
   data2: any;
   response: Response;
-  mode: 'locked' | 'locked' = 'locked';
+  mode:'edit' | 'locked' = 'locked';
+    ButtonText: 'save' | 'edit' = 'edit';
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService
@@ -29,6 +31,10 @@ export class UserDetailsComponent implements OnInit {
       )
     }
     )
+  }
+  changeMode(mode: 'edit' | 'locked'): void {
+    this.mode = this.mode === 'locked' ? 'edit' : 'locked';
+    this.ButtonText = this.ButtonText === 'edit' ? 'save' : 'edit';
   }
 
 }
