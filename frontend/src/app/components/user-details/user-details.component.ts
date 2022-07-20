@@ -1,3 +1,4 @@
+import { Response } from './../../interface/response';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../service/user.service';
@@ -8,7 +9,9 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
-data2: any;
+  data2: any;
+  response: Response;
+  mode: 'locked' | 'locked' = 'locked';
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService
