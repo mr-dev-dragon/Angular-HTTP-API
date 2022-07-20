@@ -21,16 +21,16 @@ export class UserDetailsComponent implements OnInit {
   { }
 
   ngOnInit(): void {
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) =>
-    {  console.log(` Id : ${params.get('uuid')!}`);
-      this.userService.getUser(params.get('uuid')!).subscribe((res:any )=>
-      {
-        console.log(res);
-      return this.data2 = res;
-      }
-      )
-    }
-    )
+    // this.activatedRoute.paramMap.subscribe((params: ParamMap) =>
+    // {  console.log(` Id : ${params.get('uuid')!}`);
+    //   this.userService.getUser(params.get('uuid')!).subscribe((res:any )=>
+    //   {
+    //     console.log(res);
+    //   return this.data2 = res;
+    //   }
+    //   )
+    // }
+    // )
   }
   changeMode(mode: 'edit' | 'locked'): void {
     this.mode = this.mode === 'locked' ? 'edit' : 'locked';
