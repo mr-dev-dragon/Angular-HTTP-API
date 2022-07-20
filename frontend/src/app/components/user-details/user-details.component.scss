@@ -1,3 +1,33 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .card {
     position: relative;
     display: flex;
@@ -9,9 +39,16 @@
     border: 0 solid transparent;
     border-radius: .25rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
-  }
 
+
+  }
+  .toto{
+    border: 2px solid #ffffff;
+  }
+.card:hover {
+    box-shadow: 7px 5px 8px 0 rgba(97, 96, 96, 0.65), 0 2px 6px 0 rgb(206 206 238 / 54%),
+               7px 5px 5px 5px rgba(160, 160, 160, 0.65), 0 2px 6px 0 rgb(206 206 238 / 54%);
+}
   .me-2 {
     margin-right: .5rem !important;
   }
