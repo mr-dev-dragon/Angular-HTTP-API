@@ -6,7 +6,7 @@ import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {
-    path: 'user/:uid',
+    path: 'user/:uuid',
     component: UserDetailsComponent,
   },
   {

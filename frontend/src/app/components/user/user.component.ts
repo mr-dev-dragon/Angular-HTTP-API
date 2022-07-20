@@ -1,3 +1,4 @@
+import { Response } from './../../interface/response';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../service/user.service';
 
@@ -7,12 +8,14 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  response : Response;
   dataa: any;
   constructor(private serv :UserService) { }
 
   ngOnInit(): void {
-    this.serv.getUsers(1).subscribe((res: any) => {
+    this.serv.getUsers().subscribe((res: any) => {
       console.log(res);
+      this.response = res;
       return this.dataa = res;
     })
 

@@ -1,31 +1,28 @@
-import { Info } from './../../interface/info';
-import { Response } from './../../interface/response';
-import { User } from './../../interface/user';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Response } from '../../interface/response';
+import { User } from '../../interface/user';
 
-
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
-  private readonly apiUrl: string = 'https://randomuser.me/api/';
+  private readonly apiUrl: string = 'https://randomuser.me/api';
+
   constructor(private http: HttpClient) { }
 
-  getUsers(size: number = 15) {
-    return this.http.get(`${this.apiUrl}/?results=${size}`)
-      .pipe(map((response:any) => this.pro_Res(response)));
-
-
+  // Fetch users
+  getUsers(size: number = 5): Observable<Response> {
+    return this.http.get<Response>(`${this.apiUrl}/?results=${size}`).pipe(
+      map(this.processResponse));
   }
 
-  getUser(uuid: number = 1) {
-    return this.http.get(`${this.apiUrl}/?uuid=${uuid}`)
-          .pipe(map((response:any) => this.pro_Res(response)));
+  // Fetch one user using the user UUID
+  getUser(uuid: string): Observable<Response> {
+    return this.http.get<Response>(`${this.apiUrl}/?uuid=${uuid}`).pipe(
+      map(this.processResponse));
   }
-  private pro_Res(response: Response): Response {
+
+  private processResponse(response: Response): Response {
     return {
       info: { ...response.info },
       results: response.results.map((user: any) => (<User>{
@@ -35,12 +32,12 @@ export class UserService {
         email: user.email,
         username: user.login.username,
         gender: user.gender,
-        address: `${user.location.street.number} ${user.location.street.name} ${user.user.location.city}, ${user.location.country}`,
+        address: `${user.location.street.number} ${user.location.street.name} ${user.location.city}, ${user.location.country}`,
         dateOfBirth: user.dob.date,
         phone: user.phone,
         imageUrl: user.picture.medium,
-        coordinate: { latitude: +user.location.coordinates.latitude, logitude: +user.location.coordinates.logitude }
-
-      }))}
+        coordinate: { latitude: +user.location.coordinates.latitude, longitude: +user.location.coordinates.longitude }
+      }))
+    };
   }
 }
