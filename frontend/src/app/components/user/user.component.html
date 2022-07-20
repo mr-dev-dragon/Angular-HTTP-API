@@ -35,7 +35,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of response?.results; let i = index">
-      <td>{{ user.uuid.substr(0, 10) }}</td>
+      <td>{{ user.uuid.substr(0, 7) }}</td>
       <td><img [src]="user.imageUrl" height="45" width="45" style="border-radius: 50%;" alt="user.firstName"></td>
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
